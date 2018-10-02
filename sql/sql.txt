@@ -1,0 +1,1 @@
+create table feedback(RegistrationNo varchar(10),Name varchar(30),email varchar(30),contactNo varchar(10),product varchar(50),review varchar(100),stars float,Q1 int,Q2 int,Q3 int,Q4 int,Q5 int,Q6 int,Q7 int,Q8 int,Q9 int);

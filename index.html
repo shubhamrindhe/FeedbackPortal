@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html>
+	<head>		
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+		<meta name="author" content="shubhamrindhe" id="author"/>
+		
+	    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+		<link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" >
+  		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+			
+		<style>	
+			/*@import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);*/
+
+			fieldset, label { margin: 0; padding: 0; }
+			body{ margin: 20px; }
+			h1 { font-size: 1.5em; margin: 10px; }
+
+			/****** Style Star Rating Widget *****/
+
+			.rating { 
+			  border: none;
+			  float: left;
+			}
+
+			.rating > input { display: none; } 
+			.rating > label:before { 
+			  margin: 5px;
+			  font-size: 1.25em;
+			  font-family: FontAwesome;
+			  display: inline-block;
+			  content: "\f005";
+			}
+
+			.rating > .half:before { 
+			  content: "\f089";
+			  position: absolute;
+			}
+
+			.rating > label { 
+			  color: #ddd; 
+			  float: right; 
+			}
+
+			/***** CSS Magic to Highlight Stars on Hover *****/
+
+			.rating > input:checked ~ label, /* show gold star when clicked */
+			.rating:not(:checked) > label:hover, /* hover current star */
+			.rating:not(:checked) > label:hover ~ label { color: #FFD700;  } /* hover previous stars in list */
+
+			.rating > input:checked + label:hover, /* hover current star when changing rating */
+			.rating > input:checked ~ label:hover,
+			.rating > label:hover ~ input:checked ~ label, /* lighten current selection */
+			.rating > input:checked ~ label:hover ~ label { color: #FFED85;  }
+
+		</style>
+
+	</head>
+	<body>
+	
+		<!--fieldset class="rating">
+			<input type="radio" id="star5" name="rating" value="5" /><label class = "full" for="star5" title="Awesome - 5 stars"></label>
+			<input type="radio" id="star4half" name="rating" value="4 and a half" /><label class="half" for="star4half" title="Pretty good - 4.5 stars"></label>
+			<input type="radio" id="star4" name="rating" value="4" /><label class = "full" for="star4" title="Pretty good - 4 stars"></label>
+			<input type="radio" id="star3half" name="rating" value="3 and a half" /><label class="half" for="star3half" title="Meh - 3.5 stars"></label>
+			<input type="radio" id="star3" name="rating" value="3" /><label class = "full" for="star3" title="Meh - 3 stars"></label>
+			<input type="radio" id="star2half" name="rating" value="2 and a half" /><label class="half" for="star2half" title="Kinda bad - 2.5 stars"></label>
+			<input type="radio" id="star2" name="rating" value="2" /><label class = "full" for="star2" title="Kinda bad - 2 stars"></label>
+			<input type="radio" id="star1half" name="rating" value="1 and a half" /><label class="half" for="star1half" title="Meh - 1.5 stars"></label>
+			<input type="radio" id="star1" name="rating" value="1" /><label class = "full" for="star1" title="Sucks big time - 1 star"></label>
+			<input type="radio" id="starhalf" name="rating" value="half" /><label class="half" for="starhalf" title="Sucks big time - 0.5 stars"></label>
+		</fieldset-->
+	
+	
+	
+		<br><h4 class='center'>Feedback Portal</h4><br>
+		
+		
+	<div class="row">
+			<div class="col s12">
+			  <ul class="tabs">
+				<li class="tab col s6"><a href="#feedbackForm">Register</a></li>
+				<li class="tab col s6"><a href="#renderFeedbacks">Feedbacks</a></li>
+			  </ul>
+			</div>
+			<div id="feedbackForm" class="col s12">
+			
+			
+			
+			<div class="row">
+			<div class="card col s12 m10 l8 offset-l2 offset-m1">
+			  <div class="row">
+			    <form class="col s12" name="feedback" method="POST" action="./registerFeedback">
+				
+				<br>
+				
+				<div class="row">
+				  <div class="input-field col s12 m6">
+				    <i class="material-icons prefix">assignment_ind</i>
+				    <input id="icon_prefix" type="text" class="validate" name="reg">
+				    <label for="icon_prefix">Registration Number</label>
+				  </div>
+				  <div class="input-field col s12 m6">
+				    <i class="material-icons prefix">account_circle</i>
+				    <input id="icon_telephone" type="tel" class="validate" name="name">
+				    <label for="icon_telephone">Name</label>
+				  </div>
+				</div>
+				<div class="row">
+				  <div class="input-field col s12 m6">
+				    <i class="material-icons prefix">email</i>
+				    <input id="icon_prefix" type="text" class="validate" name="email">
+				    <label for="icon_prefix">E-Mail</label>
+				  </div>
+				  <div class="input-field col s12 m6">
+				    <i class="material-icons prefix">phone</i>
+				    <input id="icon_telephone" type="tel" class="validate" name="contact">
+				    <label for="icon_telephone">Contact Number</label>
+				  </div>
+				</div>
+				
+				 
+				  
+				  
+				  <div class="input-field col s12">
+				    <select name="product">
+					<option value="" disabled selected>Select Product</option>
+					<option value="Dell Inspiron 15 5577">Dell Inspiron 15 5577</option>
+					<option value="Acer Swift 3">Acer Swift 3</option>
+					<option value="Dell Alianware 17">Dell Alianware 17</option>
+					<option value="Dell XPS 13">Dell XPS 13</option>
+					<option value="Acer Predator 21X">Acer Predator 21X</option>
+					<option value="Razer Blade 15">Razer Blade 15</option>
+					<option value="HP Omen 15">HP Omen 15</option>
+					<option value="lenovo Y50">lenovo Y50</option>
+				    </select>
+				    <label>Product</label>
+				  </div>
+				  
+				<div class="divider"></div>
+				
+				<ul class="collection with-header">
+					<li class="collection-header"><h5>Questions</h5></li>
+				</ul>
+				
+				
+						<ul class="collection with-header">
+							<li class="collection-header"><h6>1. CPU Preformance</h6></li>
+							<li class="collection-item">
+								<div>
+									<fieldset class="rating">	
+										<input type="radio" name="one" id="onestar5" value="5" /><label class = "full" for="onestar5" title="5 stars"></label>
+										<input type="radio" name="one" id="onestar4" value="4" /><label class = "full" for="onestar4" title="4 stars"></label>
+										<input type="radio" name="one" id="onestar3" value="3" /><label class = "full" for="onestar3" title="3 stars"></label>
+										<input type="radio" name="one" id="onestar2" value="2" /><label class = "full" for="onestar2" title="2 stars"></label>
+										<input type="radio" name="one" id="onestar1" value="1" /><label class = "full" for="onestar1" title="1 star"></label>
+									</fieldset>
+								</div>
+							</li>
+						</ul>
+				
+						<ul class="collection with-header">
+							<li class="collection-header"><h6>2. GPU Preformance</h6></li>
+							<li class="collection-item">
+								<div>
+									<fieldset class="rating">
+										<input type="radio" name="two" id="twostar5" value="5" /><label class = "full" for="twostar5" title="5 stars"></label>
+										<input type="radio" name="two" id="twostar4" value="4" /><label class = "full" for="twostar4" title="4 stars"></label>
+										<input type="radio" name="two" id="twostar3" value="3" /><label class = "full" for="twostar3" title="3 stars"></label>
+										<input type="radio" name="two" id="twostar2" value="2" /><label class = "full" for="twostar2" title="2 stars"></label>
+										<input type="radio" name="two" id="twostar1" value="1" /><label class = "full" for="twostar1" title="1 star"></label>
+									</fieldset>
+								</div>
+							</li>
+						</ul>
+				
+				
+						<ul class="collection with-header">
+							<li class="collection-header"><h6>3. Graphics Quality</h6></li>
+							<li class="collection-item">
+								<div>
+									<fieldset class="rating">
+										<input type="radio" name="three" id="threestar5" value="5" /><label class = "full" for="threestar5" title="5 stars"></label>
+										<input type="radio" name="three" id="threestar4" value="4" /><label class = "full" for="threestar4" title="4 stars"></label>
+										<input type="radio" name="three" id="threestar3" value="3" /><label class = "full" for="threestar3" title="3 stars"></label>
+										<input type="radio" name="three" id="threestar2" value="2" /><label class = "full" for="threestar2" title="2 stars"></label>
+										<input type="radio" name="three" id="threestar1" value="1" /><label class = "full" for="threestar1" title="1 star"></label>
+									</fieldset>
+								</div>
+							</li>
+						</ul>
+				
+						<ul class="collection with-header">
+							<li class="collection-header"><h6>4. Display Quality</h6></li>
+							<li class="collection-item">
+								<div>
+									<fieldset class="rating">
+										<input type="radio" name="four" id="fourstar5" value="5" /><label class = "full" for="fourstar5" title="5 stars"></label>
+										<input type="radio" name="four" id="fourstar4" value="4" /><label class = "full" for="fourstar4" title="4 stars"></label>
+										<input type="radio" name="four" id="fourstar3" value="3" /><label class = "full" for="fourstar3" title="3 stars"></label>
+										<input type="radio" name="four" id="fourstar2" value="2" /><label class = "full" for="fourstar2" title="2 stars"></label>
+										<input type="radio" name="four" id="fourstar1" value="1" /><label class = "full" for="fourstar1" title="1 star"></label>
+									</fieldset>
+								</div>
+							</li>
+						</ul>
+				
+				
+						<ul class="collection with-header">
+							<li class="collection-header"><h6>5. Framerate</h6></li>
+							<li class="collection-item">
+								<div>
+									<fieldset class="rating">
+										<input type="radio" name="five" id="fivestar5" value="5" /><label class = "full" for="fivestar5" title="5 stars"></label>
+										<input type="radio" name="five" id="fivestar4" value="4" /><label class = "full" for="fivestar4" title="4 stars"></label>
+										<input type="radio" name="five" id="fivestar3" value="3" /><label class = "full" for="fivestar3" title="3 stars"></label>
+										<input type="radio" name="five" id="fivestar2" value="2" /><label class = "full" for="fivestar2" title="2 stars"></label>
+										<input type="radio" name="five" id="fivestar1" value="1" /><label class = "full" for="fivestar1" title="1 star"></label>
+									</fieldset>
+								</div>
+							</li>
+						</ul>
+				
+				
+
+						<ul class="collection with-header">
+							<li class="collection-header"><h6>6. Cooling System</h6></li>
+							<li class="collection-item">
+								<div>
+									<fieldset class="rating">
+										<input type="radio" name="six" id="sixstar5" value="5" /><label class = "full" for="sixstar5" title="5 stars"></label>
+										<input type="radio" name="six" id="sixstar4" value="4" /><label class = "full" for="sixstar4" title="4 stars"></label>
+										<input type="radio" name="six" id="sixstar3" value="3" /><label class = "full" for="sixstar3" title="3 stars"></label>
+										<input type="radio" name="six" id="sixstar2" value="2" /><label class = "full" for="sixstar2" title="2 stars"></label>
+										<input type="radio" name="six" id="sixstar1" value="1" /><label class = "full" for="sixstar1" title="1 star"></label>
+									</fieldset>
+								</div>
+							</li>
+						</ul>
+				
+				
+				
+						<ul class="collection with-header">
+							<li class="collection-header"><h6>7. Battery Backup</h6></li>
+							<li class="collection-item">
+								<div>
+									<fieldset class="rating">
+										<input type="radio" name="seven" id="sevenstar5" value="5" /><label class = "full" for="sevenstar5" title="5 stars"></label>
+										<input type="radio" name="seven" id="sevenstar4" value="4" /><label class = "full" for="sevenstar4" title="4 stars"></label>
+										<input type="radio" name="seven" id="sevenstar3" value="3" /><label class = "full" for="sevenstar3" title="3 stars"></label>
+										<input type="radio" name="seven" id="sevenstar2" value="2" /><label class = "full" for="sevenstar2" title="2 stars"></label>
+										<input type="radio" name="seven" id="sevenstar1" value="1" /><label class = "full" for="sevenstar1" title="1 star"></label>
+									</fieldset>
+								
+								</div>
+							</li>
+						</ul>
+				
+				
+				
+						<ul class="collection with-header">
+							<li class="collection-header"><h6>8. Customer Care</h6></li>
+							<li class="collection-item">
+								<div>
+									<fieldset class="rating">
+										<input type="radio" name="eight" id="eightstar5" value="5" /><label class = "full" for="eightstar5" title="5 stars"></label>
+										<input type="radio" name="eight" id="eightstar4" value="4" /><label class = "full" for="eightstar4" title="4 stars"></label>
+										<input type="radio" name="eight" id="eightstar3" value="3" /><label class = "full" for="eightstar3" title="3 stars"></label>
+										<input type="radio" name="eight" id="eightstar2" value="2" /><label class = "full" for="eightstar2" title="2 stars"></label>
+										<input type="radio" name="eight" id="eightstar1" value="1" /><label class = "full" for="eightstar1" title="1 star"></label>
+									</fieldset>
+								</div>
+							</li>
+						</ul>
+				
+				
+				
+				
+
+						<ul class="collection with-header">
+							<li class="collection-header"><h6>9. How satisfied you are?</h6></li>
+							<li class="collection-item">
+								<div>
+									<fieldset class="rating">
+										<input type="radio" name="nine" id="ninestar5" value="5" /><label class = "full" for="ninestar5" title="5 stars"></label>
+										<input type="radio" name="nine" id="ninestar4" value="4" /><label class = "full" for="ninestar4" title="4 stars"></label>
+										<input type="radio" name="nine" id="ninestar3" value="3" /><label class = "full" for="ninestar3" title="3 stars"></label>
+										<input type="radio" name="nine" id="ninestar2" value="2" /><label class = "full" for="ninestar2" title="2 stars"></label>
+										<input type="radio" name="nine" id="ninestar1" value="1" /><label class = "full" for="ninestar1" title="1 star"></label>
+									</fieldset>
+								</div>
+							</li>
+						</ul>				
+				
+				
+				
+				
+						<ul class="collection with-header">
+							<li class="collection-header"><h6>10. Review</h6></li>
+							<li class="collection-item">
+								<div>
+									  <div class="row">
+										<div class="col s12">
+										  <div class="row">
+											<div class="input-field col s12">
+											  <textarea id="textarea1" class="materialize-textarea" name="review" maxlength="100"></textarea>
+											  <label for="textarea1">Review</label>
+											</div>
+										  </div>
+										</div>
+									  </div>
+								</div>
+							</li>
+						</ul>
+				
+	
+						<div class="row">
+						  <div class="">
+							<div class="center">
+							<button class="btn waves-effect waves-light " type="submit" name="action">Submit
+								<i class="material-icons right">send</i>
+							  </button>
+							  
+							  <button class="btn waves-effect waves-light" type="button" onclick="reset()">Reset
+							  </button>
+							</div>
+						  </div>
+						</div>
+			    </form>
+			  </div>
+			</div>	
+			</div>		
+			
+			
+			
+		</div>
+		<div id="renderFeedbacks" class="col s12">
+					<form method="POST" action="./feedbacks" class="row">
+						<button class="btn waves-effect waves-light center" type="submit" name="action" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);">View Feedbacks<i class="material-icons right"></i></button>
+					</form>
+		</div>
+	</div>
+		
+		
+		
+		
+		
+		
+	<script>
+	   M.AutoInit();
+	   
+	   function reset(){
+	   }
+	</script>	
+		
+	</body>
+	
+</html>
