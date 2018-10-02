@@ -1,0 +1,23 @@
+
+<web-app>
+    
+	<servlet>
+        <servlet-name>FeedbackHandler</servlet-name>
+        <servlet-class>FeedbackHandler</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>FeedbackHandler</servlet-name>
+        <url-pattern>/registerFeedback</url-pattern>
+    </servlet-mapping>
+	
+	<servlet>
+        <servlet-name>FeedbackRenderer</servlet-name>
+        <servlet-class>FeedbackRenderer</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>FeedbackRenderer</servlet-name>
+        <url-pattern>/feedbacks</url-pattern>
+    </servlet-mapping>
+	
+</web-app>
+
